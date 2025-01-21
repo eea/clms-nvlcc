@@ -9,9 +9,9 @@ from modules.regions_dict import regions_dict
 from modules.images import read_image, save_as_png
 from modules.utils import define_colormap
 
-def calculate_statistics(chosen_region, label, exclude_values=[]):
+def calculate_statistics(rasters_dir, chosen_region, label, exclude_values=[]):
     
-    output = read_image(chosen_region, label)
+    output = read_image(rasters_dir, chosen_region, label)
     arr, arr_min, arr_max = output['array'], output['min_value'], output['max_value']
     masked_arr = arr[~np.isin(arr, exclude_values)].flatten()
     
@@ -33,7 +33,7 @@ def calculate_statistics(chosen_region, label, exclude_values=[]):
     return output
 
 
-def plot_histograms(chosen_region, histogram_setups, figure_size=(12, 4), log_scale=False):
+def plot_histograms(rasters_dir, chosen_region, histogram_setups, figure_size=(12, 4), log_scale=False):
 
     fig, axes = plt.subplots(1, len(histogram_setups), figsize=figure_size)
     axes = np.atleast_1d(axes)  # Ensure axes is always an array
@@ -45,7 +45,7 @@ def plot_histograms(chosen_region, histogram_setups, figure_size=(12, 4), log_sc
         exclude_values = hist_setup['exclude_values']
         name = hist_setup['layer_name']
 
-        output = read_image(chosen_region, label)
+        output = read_image(rasters_dir, chosen_region, label)
         arr, arr_min, arr_max = output['array'], output['min_value'], output['max_value']
 
         # Normalize the data for color mapping
@@ -106,17 +106,17 @@ def match_array_shape(imd_arr, lst_arr, scaling_factor=7):
 
 
     
-def generate_scatter_plot(chosen_region, imd_layer_name, lst_layer_name, filter_outliers=True, exclude_values=[0,100], log_scale=False):
+def generate_scatter_plot(rasters_dir, chosen_region, imd_layer_name, lst_layer_name, filter_outliers=True, exclude_values=[0,100], log_scale=False):
 
     # Initialize lists to store IMD values and corresponding mean LST values
     imd_values = []
     lst_mean_values = []
 
 
-    output = read_image(chosen_region, 'IMD')
+    output = read_image(rasters_dir, chosen_region, 'IMD')
     imd_arr, imd_arr_min, imd_arr_max = output['array'], output['min_value'], output['max_value']
 
-    output = read_image(chosen_region, 'LST')
+    output = read_image(rasters_dir, chosen_region, 'LST')
     lst_arr, lst_arr_min, lst_arr_max = output['array'], output['min_value'], output['max_value']
 
 
@@ -204,7 +204,7 @@ def calculate_statistics_masked(arr, exclude_values):
 
 
 
-def analyze_masked_area(chosen_region, mask_below, clim, imd_layer_name, lst_layer_name, mask_by='LST'):
+def analyze_masked_area(rasters_dir, chosen_region, mask_below, clim, imd_layer_name, lst_layer_name, mask_by='LST'):
     
     
     from folium.plugins import SideBySideLayers
@@ -230,10 +230,10 @@ def analyze_masked_area(chosen_region, mask_below, clim, imd_layer_name, lst_lay
     figure = folium.Figure(width=600, height=400)
     map = folium.Map(coordinates, zoom_start=regions_dict[chosen_region][1], tiles='Cartodb Positron').add_to(figure)
 
-    output = read_image(chosen_region, 'IMD')
+    output = read_image(rasters_dir, chosen_region, 'IMD')
     imd_arr, imd_arr_min, imd_arr_max = output['array'], output['min_value'], output['max_value']
 
-    output = read_image(chosen_region, 'LST')
+    output = read_image(rasters_dir, chosen_region, 'LST')
     lst_arr, lst_arr_min, lst_arr_max, bounds = output['array'], output['min_value'], output['max_value'], output['bounds']
 
     imd_arr, lst_arr = match_array_shape(imd_arr, lst_arr, scaling_factor=7)

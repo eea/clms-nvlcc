@@ -53,7 +53,7 @@ def visualize_datasets(dataset_properties, figure_size=(12, 6)):
 
 
 
-def read_image(chosen_region, dataset_label, mask_below=None):    
+def read_image(rasters_dir, chosen_region, dataset_label, mask_below=None):    
     '''
     Read LSM and IMD images for the chosen region.
     Return arrays, bounds, min and max values for both images.
@@ -62,8 +62,7 @@ def read_image(chosen_region, dataset_label, mask_below=None):
     image_label = regions_dict[chosen_region][3]
     target_projection = '4326' #'3857'
 
-    path_to_raster_dir = '/mnt/ongoing/processing/2788_HeatMon/02_Interim_Products/2412_NVLCC_IMD_use_case/region_rasters'  # TBD!!!! to be changed to repo subdir
-    path_to_dataset = list_filepaths(path_to_raster_dir, [dataset_label, image_label,  '.tif', target_projection], ['.aux'])[0]
+    path_to_dataset = list_filepaths(rasters_dir, [dataset_label, image_label,  '.tif', target_projection], ['.aux'])[0]
 
     # print(path_to_dataset)
     
