@@ -72,7 +72,12 @@ def read_image(rasters_dir, chosen_region, dataset_label, mask_below=None):
         
         arr[arr == src.nodata] = np.nan
         
-        src_crs = src.crs['init'].upper()
+        # src_crs = src.crs['init'].upper()
+        
+        # Updated line to access CRS information
+        src_crs = src.crs.to_string().upper()
+
+
         min_lon, min_lat, max_lon, max_lat = src.bounds
         bounds_lst = [[src.bounds.bottom, src.bounds.left], [src.bounds.top, src.bounds.right]]
         
