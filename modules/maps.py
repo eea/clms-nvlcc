@@ -1,8 +1,9 @@
 import os
 import folium
+import warnings
 import branca.colormap as cm
-from IPython.display import display, HTML
 import numpy as np
+from IPython.display import display, HTML
 
 from modules.utils import define_colormap
 from modules.regions_dict import regions_dict
@@ -58,11 +59,14 @@ def display_side_by_side(m1, m2):  # TBD!!! use DualMap instead??
     '''
     Display two folium maps side by side.
     '''
+    
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
 
-    htmlmap = HTML('<iframe srcdoc="{}" style="float:left; width: {}px; height: {}px; display:inline-block; width: 49%; margin: 0 auto; border: 2px solid black"></iframe>'
-            '<iframe srcdoc="{}" style="float:right; width: {}px; height: {}px; display:inline-block; width: 49%; margin: 0 auto; border: 2px solid black"></iframe>'
-            .format(m1.get_root().render().replace('"', '&quot;'),500,500,
-                    m2.get_root().render().replace('"', '&quot;'),500,500))
+        htmlmap = HTML('<iframe srcdoc="{}" style="float:left; width: {}px; height: {}px; display:inline-block; width: 49%; margin: 0 auto; border: 2px solid black"></iframe>'
+                '<iframe srcdoc="{}" style="float:right; width: {}px; height: {}px; display:inline-block; width: 49%; margin: 0 auto; border: 2px solid black"></iframe>'
+                .format(m1.get_root().render().replace('"', '&quot;'),500,500,
+                        m2.get_root().render().replace('"', '&quot;'),500,500))
     display(htmlmap)
     
     

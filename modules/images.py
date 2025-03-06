@@ -59,7 +59,7 @@ def read_image(rasters_dir, chosen_region, dataset_label, mask_below=None):
     Return arrays, bounds, min and max values for both images.
     '''
 
-    image_label = regions_dict[chosen_region][3]
+    image_label = regions_dict[chosen_region][2]
     target_projection = '4326' #'3857'
 
     path_to_dataset = list_filepaths(rasters_dir, [dataset_label, image_label,  '.tif', target_projection], ['.aux'])[0]
