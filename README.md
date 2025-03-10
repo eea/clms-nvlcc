@@ -4,7 +4,7 @@
 
 ## Overview
 
-This repository contains a Jupyter Notebook and accompanying scripts used for detecting and analyzing Urban Heat Islands (UHIs) using the CLMS HRL Imperviousness Density 2021 dataset. The analysis investigates the correlation between artificial surface sealing and elevated land surface temperatures, demonstrating how urbanization contributes to localized heating effects.
+This repository contains a Jupyter Notebook and accompanying scripts used for detecting and analyzing Urban Heat Islands (UHIs) using the CLMS HRL Imperviousness Density 2021 dataset. The notebook investigates the correlation between artificial surface sealing and elevated land surface temperatures, demonstrating how urbanization contributes to localized heating effects.
 
 ## Features
 - Exploration of UHIs across different cities in Austria.

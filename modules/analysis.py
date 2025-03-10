@@ -1,5 +1,5 @@
 '''
-Description: This module contains functions for analyzing the data and generating plots.
+This module contains functions for analyzing the data and generating plots.
 '''
 
 import matplotlib

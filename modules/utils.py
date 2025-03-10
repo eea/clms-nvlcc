@@ -1,3 +1,7 @@
+'''
+This module contains utility functions for the notebook.
+'''
+
 import os
 import ipywidgets as widgets
 import branca.colormap as cm
