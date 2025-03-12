@@ -96,6 +96,7 @@ def plot_histograms(rasters_dir, chosen_region, histogram_setups,
         - `layer_name (str)`: label to be displayed on the histogram
         - `color_code (str)`: color code to be used for the histogram
         - `exclude_values (list)`: list of values to be excluded from the plot
+        - 'title (str)`: title for the histogram
     - `figure_size (tuple)`: size of the figure. Default is `(12, 4)`.
     - `bins (int)`: number of bins for the histogram. Default is `25`.
     - `log_scale (bool)`: whether to use log scale for the y-axis. Default is `False`.
@@ -108,11 +109,12 @@ def plot_histograms(rasters_dir, chosen_region, histogram_setups,
 
     for i, hist_setup in enumerate(histogram_setups):
                                 
-        label, name, color, exclude_values = (
+        label, name, color, exclude_values, title = (
             hist_setup['label'],
             hist_setup['layer_name'],
             hist_setup['color_code'],
-            hist_setup['exclude_values']           
+            hist_setup['exclude_values'],
+            hist_setup['title']
         )
 
         output = read_image(rasters_dir, chosen_region, label)
@@ -138,6 +140,7 @@ def plot_histograms(rasters_dir, chosen_region, histogram_setups,
         axes[i].set_ylabel('Frequency')
         axes[i].grid(True, which='both', linestyle='--', linewidth=0.5)
         axes[i].set_axisbelow(True)
+        axes[i].set_title(f'{chosen_region}, AT: {title}')
 
         if log_scale:
             axes[i].set_yscale('log')
@@ -229,6 +232,7 @@ def generate_scatter_plot(rasters_dir, chosen_region, imd_layer_name, lst_layer_
                 edgecolors='black')
     plt.xlabel(imd_layer_name)
     plt.ylabel(f'Mean {lst_layer_name}')
+    plt.title(f'{chosen_region}, AT: relationship between IMD and LST')
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
 
     if log_scale:

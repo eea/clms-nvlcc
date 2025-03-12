@@ -169,8 +169,7 @@ def save_as_png(arr, path, color_code='viridis', clim=None, reverse=False):
     image = Image.fromarray(arr_uint8_with_alpha, mode='RGBA')
     image.save(path)
     
-    
-    
+ 
 def match_array_shape(imd_arr, lst_arr, scaling_factor=7):
     '''
     Helper function to bring the two arrays (`IMD` and `LST`) to the same shape. 
