@@ -1,9 +1,9 @@
-numpy
-branca
-rasterio
-folium
-scipy
-matplotlib
-ipywidgets
+numpy==2.4.4
+branca==0.8.2
+rasterio==1.4.4
+folium==0.20.0
+scipy==1.17.1
+matplotlib==3.10.9
+ipywidgets==8.1.8
 notebook
 ipykernel
