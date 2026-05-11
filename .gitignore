@@ -4,3 +4,4 @@ tests.ipynb
 concept.ipynb
 modules/__pycache__/
 tmp/
+.ipynb_checkpoints/

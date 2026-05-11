@@ -1,0 +1,9 @@
+numpy
+branca
+rasterio
+folium
+scipy
+matplotlib
+ipywidgets
+notebook
+ipykernel
