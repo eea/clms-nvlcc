@@ -13,15 +13,30 @@ This repository contains a Jupyter Notebook and accompanying scripts used for de
 - Statistical analysis to quantify the relationship between imperviousness and surface temperature.
 
 ## Getting Started
+
+### Launch via Binder
 Launch the notebook directly using Binder:
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/eea/clms-nvlcc/HEAD?urlpath=%2Fdoc%2Ftree%2Fuhi_detection_with_clms_imperviousness.ipynb)
 
-Or clone the repository and run it locally:
+
+### Launch locally
+Or clone the repository to run it locally:
 
 ```
 git clone https://github.com/eea/clms-nvlcc.git
 cd clms-nvlcc
+```
+A corresponding conda environment to run the notebook locally can be created using the `requirements.txt` file:
+
+```
+conda create -n nvlcc python=3.11
+conda activate nvlcc
+pip install -r requirements.txt
+```
+The notebook can then be run by:
+
+```
 jupyter notebook
 ```
 
